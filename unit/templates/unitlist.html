@@ -4,7 +4,8 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    
+<a id="make_new_course" href="/unit/new">New Course</a>
+
 <div id="all_courses">
   {% for object in object_list %}
   <div class="{{object.course_number}}_{{object.group_number}}">

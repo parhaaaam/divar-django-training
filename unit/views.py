@@ -3,7 +3,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from .models import Unit
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import View
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
@@ -29,7 +29,11 @@ class UnitList(LoginRequiredMixin, ListView) :
 #     model = Unit
 #     template_name = 'unit.html'
 
-class NewUnit(LoginRequiredMixin, CreateView) : 
+class IsAdmin(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_superuser
+
+class NewUnit(LoginRequiredMixin, IsAdmin, CreateView) : 
     model = Unit
     form_class = forms.UnitForm
     template_name = 'newunit.html'
