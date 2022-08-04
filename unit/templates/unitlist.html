@@ -1,0 +1,49 @@
+
+
+
+{% extends "layout.html" %}
+
+{% block content %}
+    
+    
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">University</th>
+        <th scope="col">Name</th>
+        <th scope="col">Group id</th>
+        <th scope="col">Unit id</th>
+        <th scope="col">Teacher's name</th>
+        <th scope="col">Start time</th>
+        <th scope="col">End time</th>
+        <th scope="col">First day</th>
+        <th scope="col">Second day</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+        {% for object in object_list %}
+        <tr>
+            <th scope="row">{{ object.pk }}</th>
+            <td>{{ object.university_name }}</td>
+            <td>{{ object.unit_name }}</td>
+            <td>{{ object.group_number }}</td>
+            <td>{{ object.unit_number }}</td>
+            <td>{{ object.teacher }}</td>
+            <td>{{ object.start_time }}</td>
+            <td>{{ object.finish_time }}</td>
+            <td>{{ object.first_session }}</td>
+            <td>{{ object.second_session }}</td>
+          </tr>
+        {% empty %}
+        <tr>
+            <td scope="row">No items yet</td>
+        </tr>        
+        {% endfor %}
+    
+    </tbody>
+  </table>
+        
+    </ul>
+{% endblock %}
