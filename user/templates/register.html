@@ -1,14 +1,30 @@
 
 
+
+{% extends "layout.html" %}
 {% load crispy_forms_tags %}         
+
+{% block content %}
 
 <!--Register--> 
 <div class="container py-5">
 	<h1>Register</h1>
-	<form method="POST">
+    <div style="background-color: black; color: white; direction: rtl" class="d-flex flex-column" id="errors">
+    {% if form.errors %}
+    {% for field in form %}
+    {% for error in field.errors %}
+    {{ error|escape }}
+    {% endfor %}
+    {% endfor %}
+    {% endif %}
+</div>
+	<form method="POST" id="register_form">
 		{% csrf_token %}
 		{{ form|crispy }}                    
-		<button class="btn btn-primary" type="submit">Register</button>
+		<button class="btn btn-primary" type="submit" name="submit">Register</button>
 	</form>
 	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
 </div>
+{% endblock %}
+
+

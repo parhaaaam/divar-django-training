@@ -1,12 +1,6 @@
 
+{% extends "layout.html" %}
 
-{% if user.is_authenticated %}
-Hi, {{ user.first_name }} {{ user.last_name }}!
-<a href = '/user/profile'> CLICK FOR VIEWING YOUR PROFILE</a>
-
-{% else %}
-<a href = '/user/login' > LOGIN</a>
-
-<a href = '/user/register' > REGISTER</a>
-
-{% endif %}
+{% block content %}
+ <div dir="rtl" style="background-color: black; color: white;">سلام. به سامانه‌ی انتخاب واحد مجازی خوش آمدید.</div>
+{% endblock %}

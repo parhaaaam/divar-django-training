@@ -7,7 +7,10 @@ from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from . import forms
-
+from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
+from django.views.generic import RedirectView
 
 
 class Index (TemplateView) : 
@@ -34,8 +37,11 @@ class Log_in(TemplateView) :
         if current_user is not None : 
 
             login(request , current_user) 
+            
+            redirect_url = request.GET.get('next', '/user/')
+
         
-            return redirect("/user")
+            return redirect(redirect_url)
         else :
             self.error = "Invalid Username/password"
             return self.get(request)
@@ -44,7 +50,7 @@ class Log_in(TemplateView) :
 class Register(CreateView) : 
     form_class = forms.NewUserForm
     template_name = 'register.html'
-    success_url = '/user'
+    success_url = '/user/'
 
     def form_valid(self, form):
         resp = super().form_valid(form)
@@ -55,12 +61,30 @@ class Register(CreateView) :
         return resp
     
     
-class Profile(TemplateView) : 
+class Profile(LoginRequiredMixin, TemplateView) : 
 
     template_name = 'profile.html'
 
-class Update(UpdateView) : 
+class Update(LoginRequiredMixin, UpdateView) : 
 
     model = User
-    fileds = ['first_name ' , 'last_name']
-    templlate_name = 'update.html'
+    fields = ['first_name' , 'last_name']
+    template_name = 'update.html'
+    success_url = '/user/profile'
+
+    def get_object(self):
+        return self.request.user
+
+class LogoutView(RedirectView):
+
+
+    permanent = False
+    query_string = True
+    pattern_name = 'login'
+
+    def get_redirect_url(self, *args, **kwargs):
+        print(self.request.user)
+
+        if self.request.user.is_authenticated:
+            logout(self.request)
+        return super(LogoutView, self).get_redirect_url(*args, **kwargs) 

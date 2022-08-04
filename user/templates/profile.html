@@ -1,8 +1,12 @@
 
+{% extends "layout.html" %}
+
+{% block content %}
 
 <h1>Here is your profile info </h1>
-<div  >{{ user.first_name }}</div>
-<div  >{{ user.last_name }}</div>
-<div  >{{ user.username }}</div>
+<div  id="text_first_name">{{ user.first_name }}</div>
+<div  id="text_last_name">{{ user.last_name }}</div>
+<div  id="text_user_name">{{ user.username }}</div>
 
-<a href = '/user/profile/update' > CLICK FOR UPDATING YOUR INFORMATION </a>
+<a href = '/user/profile/update' id="setting"> CLICK FOR UPDATING YOUR INFORMATION </a>
+{% endblock %}
