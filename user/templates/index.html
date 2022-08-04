@@ -1,0 +1,12 @@
+
+
+{% if user.is_authenticated %}
+Hi, {{ user.first_name }} {{ user.last_name }}!
+<a href = '/user/profile'> CLICK FOR VIEWING YOUR PROFILE</a>
+
+{% else %}
+<a href = '/user/login' > LOGIN</a>
+
+<a href = '/user/register' > REGISTER</a>
+
+{% endif %}

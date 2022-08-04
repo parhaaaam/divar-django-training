@@ -1,0 +1,10 @@
+
+
+<div>
+	<h1>Update</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}                    
+		<button type="submit">Update</button>
+	</form>
+</div>
