@@ -1,0 +1,39 @@
+
+
+
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}         
+
+
+{% block content %}
+    
+ <form method="post" id="make_course">
+
+    {% csrf_token %}
+    {{ form|crispy }}  
+
+    <!-- <input name="department" type="text"/>
+    <input name="name" type="text"/>
+    <input name="course_number" type="text"/>
+    <input name="group_number" type="text"/>
+    <input name="teacher" type="text"/>
+    <input name="start_time" type="text"/>
+    <input name="end_time" type="text"/>
+    <select name="first_day" type="text">
+        <option value="0">saturday</option>
+        <option value="1">sunday</option>
+        <option value="2">monday</option>
+        <option value="3">tuesday</option>
+        <option value="4">wednesday</option>
+    </select>
+    <select name="second_day" type="text">
+        <option value="0">saturday</option>
+        <option value="1">sunday</option>
+        <option value="2">monday</option>
+        <option value="3">tuesday</option>
+        <option value="4">wednesday</option>
+    </select> -->
+
+    <button type="submit" class="btn btn-primary">submit</button>
+ </form>
+{% endblock %}

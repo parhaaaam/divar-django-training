@@ -5,12 +5,24 @@
 
 {% block content %}
     
+<div id="all_courses">
+  {% for object in object_list %}
+  <div class="{{object.course_number}}_{{object.group_number}}">
+    <h4 class="">{{object.name}}</h4>
+    <div class="badge bg-primary">{{object.department}}</div>
+    <div class="badge bg-secondary">{{object.first_day}} {{object.second_day}}</div>
+    <div class="badge bg-secondary">{{object.start_time}} {{object.end_time}}</div>
+    <div class="badge bg-success">{{object.teacher}}</div>
+  </div>
+  {% endfor %}
+
+</div>
     
 <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">University</th>
+        <th scope="col">Department</th>
         <th scope="col">Name</th>
         <th scope="col">Group id</th>
         <th scope="col">Unit id</th>
@@ -26,15 +38,15 @@
         {% for object in object_list %}
         <tr>
             <th scope="row">{{ object.pk }}</th>
-            <td>{{ object.university_name }}</td>
-            <td>{{ object.unit_name }}</td>
+            <td>{{ object.department }}</td>
+            <td>{{ object.name }}</td>
             <td>{{ object.group_number }}</td>
-            <td>{{ object.unit_number }}</td>
+            <td>{{ object.course_number }}</td>
             <td>{{ object.teacher }}</td>
             <td>{{ object.start_time }}</td>
-            <td>{{ object.finish_time }}</td>
-            <td>{{ object.first_session }}</td>
-            <td>{{ object.second_session }}</td>
+            <td>{{ object.end_time }}</td>
+            <td>{{ object.first_day }}</td>
+            <td>{{ object.second_day }}</td>
           </tr>
         {% empty %}
         <tr>
