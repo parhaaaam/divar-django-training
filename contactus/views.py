@@ -20,7 +20,7 @@ class Contact(CreateView) :
 
         contact = self.object
 
-        send_mail(subject=contact.title, message=f"{contact.email}\n{contact.text}", from_email="parhamhohoho@gmail.com", recipient_list=['atrin.hojjat@gmail.com'], fail_silently=False)
+        send_mail(subject=contact.title, message=f"{contact.email}\n{contact.text}", from_email="parhamhohoho@gmail.com", recipient_list=['danial.erfanian@divar.ir'], fail_silently=False)
 
         return res
     
